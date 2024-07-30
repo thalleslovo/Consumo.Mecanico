@@ -1,7 +1,6 @@
-package Consumo.Api.Consumo.Api.Controller;
+package Consumo.Api.Consumo.Api.Controller.Controller;
 
-
-import Consumo.Api.Consumo.Api.pessoas.DadosPessoas;
+import Consumo.Api.Consumo.Api.Controller.planetas.DadosPlanetas;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,19 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("pessoas")
-public class Api {
+@RequestMapping("planetas")
+public class Api3 {
 
     @GetMapping("{id}")
-    private DadosPessoas consumoapi(@PathVariable ("id") String id){
+    private DadosPlanetas consumoplanetas(@PathVariable("id") String id){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<DadosPessoas> resp =
+        ResponseEntity<DadosPlanetas> resp =
                 restTemplate
-                .getForEntity(
-                        String.format("https://swapi.dev/api/people/%s/", id),
-                         DadosPessoas.class);
+                        .getForEntity(
+                                String.format("https://swapi.dev/api/planets/%s/",id),
+                                DadosPlanetas.class);
 
         return resp.getBody();
-
     }
 }
